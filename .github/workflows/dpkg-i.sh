@@ -4,6 +4,6 @@
 # (It does have network and can run additional installs if needed.)
 
 banner "dpkg -i" >&2
-cd /root/src
+cd /work/src
 ls -l linux-*.deb
 dpkg -i linux-*.deb
