@@ -21,8 +21,6 @@ jobs:
               run: |
                   pipx install git+https://github.com/systemd/mkosi.git
                   sudo rm -f /dev/kvm
-                  echo ==$PATH==
-                  echo $HOME/.local/bin >> $GITHUB_PATH
 
             - name: Install debootstrap from Ubuntu git
               run: |
@@ -39,7 +37,7 @@ jobs:
                   git diff
 
             - name: Create bootable image using mkosi
-              run: sudo mkosi -r ${{ env.series }} --cache=mkosi.cache --prepare-script=.github/workflows/dpkg-i.sh
+              run: mkosi -r ${{ env.series }} --cache=mkosi.cache --prepare-script=.github/workflows/dpkg-i.sh
 
             - name: Boot image on qemu
               run: |

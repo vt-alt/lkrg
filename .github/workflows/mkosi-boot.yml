@@ -22,11 +22,9 @@ jobs:
               run: |
                   pipx install git+https://github.com/systemd/mkosi.git
                   sudo rm -f /dev/kvm
-                  echo ==$PATH==
-                  echo $HOME/.local/bin >> $GITHUB_PATH
 
             - name: Create bootable image using mkosi
-              run: sudo mkosi -r ${{ matrix.release }} --cache=mkosi.cache
+              run: mkosi -r ${{ matrix.release }} --cache=mkosi.cache
 
             - name: Boot image on qemu
               run: |
