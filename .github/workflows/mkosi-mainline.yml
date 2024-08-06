@@ -9,20 +9,17 @@ on:
 jobs:
     mkosi-mainline:
         if: ${{ github.repository == 'lkrg-org/lkrg' || github.event_name != 'schedule' }}
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         steps:
             - uses: actions/checkout@v3
             - run: sudo apt-get update
+            - run: sudo apt-get install -y mkosi
             - run: sudo apt-get install -y debootstrap qemu-system-x86 systemd-container expect sysvbanner
             - name: Install mkosi from git
               # Native focal package seems to be too old (v5) and not even
               # able to build images properly.
               run: |
-                  sudo python3 -m pip install git+https://github.com/systemd/mkosi.git@v14
-                  sudo sed -i 's/linux-generic/linux-virtual/' /usr/local/lib/python*/dist-packages/mkosi/__init__.py
-                  sudo sed -i 's/dpkg-reconfigure dracut/&||:/' /usr/local/lib/python*/dist-packages/mkosi/resources/dpkg-reconfigure-dracut.install
                   sudo rm -f /dev/kvm
-                  echo /usr/local/bin >> $GITHUB_PATH
 
             - name: Install debootstrap from Ubuntu git
               run: |
