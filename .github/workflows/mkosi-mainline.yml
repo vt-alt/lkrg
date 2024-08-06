@@ -38,7 +38,7 @@ jobs:
                   git diff
 
             - name: Create bootable image using mkosi
-              run: sudo mkosi -r ${{ env.series }} --cache=mkosi.cache --prepare-script=.github/workflows/dpkg-i.sh
+              run: sudo -E mkosi -r ${{ env.series }} --cache=mkosi.cache --prepare-script=.github/workflows/dpkg-i.sh
 
             - name: Boot image on qemu
               run: |

@@ -25,7 +25,7 @@ jobs:
                   echo /root/.local/bin >> $GITHUB_PATH
 
             - name: Create bootable image using mkosi
-              run: sudo mkosi -r ${{ matrix.release }} --cache=mkosi.cache
+              run: sudo -E mkosi -r ${{ matrix.release }} --cache=mkosi.cache
 
             - name: Boot image on qemu
               run: |
