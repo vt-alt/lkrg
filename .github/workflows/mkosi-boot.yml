@@ -15,7 +15,7 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - run: sudo apt-get update
-            - run: sudo apt-get install -y debootstrap qemu-system-x86 systemd-container expect pipx
+            - run: sudo apt-get install -y debootstrap qemu-system-x86 systemd-container expect pipx bubblewrap
             - name: Install mkosi from git
               # Native focal package seems to be too old (v5) and not even
               # able to build images properly.
