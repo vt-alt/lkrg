@@ -21,6 +21,7 @@ jobs:
               # able to build images properly.
               run: |
                   sudo rm -f /dev/kvm
+                  mkosi --version
 
             - name: Install debootstrap from Ubuntu git
               run: |
