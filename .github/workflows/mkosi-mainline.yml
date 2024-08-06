@@ -10,6 +10,7 @@ jobs:
     mkosi-mainline:
         if: ${{ github.repository == 'lkrg-org/lkrg' || github.event_name != 'schedule' }}
         runs-on: ubuntu-24.04
+            # Get:39 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 mkosi all 20.2-1 [181 kB]
         steps:
             - uses: actions/checkout@v3
             - run: sudo apt-get update

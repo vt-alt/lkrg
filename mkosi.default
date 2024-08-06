@@ -30,6 +30,7 @@ Packages=
 
 [Host]
 QemuHeadless=yes
+ToolsTree=default
 
 [Validation]
 Password=
