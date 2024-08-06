@@ -19,8 +19,9 @@ jobs:
               # Native focal package seems to be too old (v5) and not even
               # able to build images properly.
               run: |
-                  pipx install git+https://github.com/systemd/mkosi.git
+                  sudo pipx install git+https://github.com/systemd/mkosi.git
                   sudo rm -f /dev/kvm
+                  echo /root/.local/bin >> $GITHUB_PATH
 
             - name: Install debootstrap from Ubuntu git
               run: |
@@ -37,7 +38,7 @@ jobs:
                   git diff
 
             - name: Create bootable image using mkosi
-              run: mkosi -r ${{ env.series }} --cache=mkosi.cache --prepare-script=.github/workflows/dpkg-i.sh
+              run: sudo mkosi -r ${{ env.series }} --cache=mkosi.cache --prepare-script=.github/workflows/dpkg-i.sh
 
             - name: Boot image on qemu
               run: |
