@@ -20,12 +20,13 @@ jobs:
               # Native focal package seems to be too old (v5) and not even
               # able to build images properly.
               run: |
-                  sudo pipx install git+https://github.com/systemd/mkosi.git
+                  sudo PIPX_BIN_DIR=/usr/local/bin pipx install git+https://github.com/systemd/mkosi.git
                   sudo rm -f /dev/kvm
-                  ls -la /var/cache
+                  sudo mkdir -p /var/cache/mkosi
+                  ls -l /usr/local/bin/mkosi
 
             - name: Create bootable image using mkosi
-              run: sudo -i mkosi -r ${{ matrix.release }}
+              run: sudo mkosi -r ${{ matrix.release }}
 
             - name: Boot image on qemu
               run: |
