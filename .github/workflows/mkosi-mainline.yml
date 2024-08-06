@@ -18,7 +18,10 @@ jobs:
             - uses: systemd/mkosi@main
             - name: Check mkosi
               run: |
+                  set -x
                   mkosi --version
+                  mkosi dependencies |
+                  xargs -d '\n' sudo apt-get install
 
             - name: Install debootstrap from Ubuntu git
               run: |
