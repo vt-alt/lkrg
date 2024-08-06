@@ -14,13 +14,11 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - run: sudo apt-get update
-            - run: sudo apt-get install -y mkosi
             - run: sudo apt-get install -y debootstrap qemu-system-x86 systemd-container expect sysvbanner
-            - name: Install mkosi from git
-              # Native focal package seems to be too old (v5) and not even
-              # able to build images properly.
+            - uses: systemd/mkosi@main
+            - name: Check mkosi
               run: |
-                  sudo rm -f /dev/kvm
+                  mkosi --version
 
             - name: Install debootstrap from Ubuntu git
               run: |
@@ -37,7 +35,7 @@ jobs:
                   git diff
 
             - name: Create bootable image using mkosi
-              run: sudo mkosi -r ${{ env.series }} --cache=mkosi.cache --prepare-script=.github/workflows/dpkg-i.sh
+              run: mkosi -r ${{ env.series }} --cache=mkosi.cache --prepare-script=.github/workflows/dpkg-i.sh
 
             - name: Boot image on qemu
               run: |
