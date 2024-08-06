@@ -16,12 +16,13 @@ jobs:
             - uses: actions/checkout@v3
             - run: sudo apt-get update
             - run: sudo apt-get install -y debootstrap qemu-system-x86 systemd-container expect
-            - run: sudo apt-get install -y mkosi
             - name: Install mkosi from git
               # Native focal package seems to be too old (v5) and not even
               # able to build images properly.
               run: |
+                  sudo python3 -m pip install git+https://github.com/systemd/mkosi.git
                   sudo rm -f /dev/kvm
+                  echo /usr/local/bin >> $GITHUB_PATH
 
             - name: Create bootable image using mkosi
               run: sudo mkosi -r ${{ matrix.release }} --cache=mkosi.cache
