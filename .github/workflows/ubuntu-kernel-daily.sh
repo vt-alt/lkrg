@@ -7,6 +7,9 @@
 # Copyright (c) 2021 Vitaly Chikunov <vt@altlinux.org>.
 #
 
+set -x
+pwd
+set -
 baseurl="https://kernel.ubuntu.com/~kernel-ppa"
 baseurl="https://kernel.ubuntu.com"
 for listurl in \

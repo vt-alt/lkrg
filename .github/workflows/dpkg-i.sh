@@ -3,6 +3,8 @@
 # mainline kernel debs.
 # (It does have network and can run additional installs if needed.)
 
+set -x
+pwd
 banner "dpkg -i" >&2
 cd /root/src
 ls -l linux-*.deb
