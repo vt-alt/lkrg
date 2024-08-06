@@ -19,7 +19,8 @@ jobs:
               # Native focal package seems to be too old (v5) and not even
               # able to build images properly.
               run: |
-                  sudo PIPX_BIN_DIR=/usr/local/bin pipx install git+https://github.com/systemd/mkosi.git
+                  sudo pipx ensurepath
+                  sudo pipx install git+https://github.com/systemd/mkosi.git
                   sudo rm -f /dev/kvm
                   echo /usr/local/bin >> $GITHUB_PATH
 
