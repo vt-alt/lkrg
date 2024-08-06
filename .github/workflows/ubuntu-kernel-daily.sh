@@ -41,6 +41,9 @@ do
 				if [ ! -e "$deb" ]; then
 					echo >&2 "Download $url$deb"
 					curl -O "$url$deb"
+					set -x
+					pwd
+					ls -la
 				fi
 			done
 			# Signal success to upper shell.

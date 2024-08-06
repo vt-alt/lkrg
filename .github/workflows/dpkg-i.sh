@@ -5,7 +5,8 @@
 
 set -x
 pwd
+ls -l
 banner "dpkg -i" >&2
-cd /root/src
+cd /root/src ||:
 ls -l linux-*.deb
 dpkg -i linux-*.deb
