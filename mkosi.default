@@ -24,6 +24,7 @@ BuildPackages=
 	diffutils
 	dkms
 	linux-virtual
+	kmod
 Packages=
 	sysvbanner
 	kmod
