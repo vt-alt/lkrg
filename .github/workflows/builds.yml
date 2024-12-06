@@ -1,4 +1,4 @@
-name: docker build
+name: container build
 on: [push, pull_request]
 
 jobs:
