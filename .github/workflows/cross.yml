@@ -38,6 +38,9 @@ jobs:
                                  -e 's,^#baseurl=http://mirror\.centos\.org/centos/\$releasever,baseurl=https://vault.centos.org/7.9.2009,' \
                                 /etc/yum.repos.d/CentOS-Base.repo && \
                           yum install -y git file gcc make  kernel-devel kernel elfutils-libelf-devel
+                    - image: quay.io/fedora/fedora:rawhide
+                      platform: linux/arm64
+                      run: time dnf install -y git file gcc make  elfutils-libelf-devel kernel-devel kernel
         steps:
             - uses: docker/setup-qemu-action@v2
             - uses: actions/checkout@v3
